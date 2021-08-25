@@ -94,19 +94,19 @@ public class HibernateTest {
 	}
 	
 	@Test
-	@Order(11)
+	@Order(12)
 	public void getUserByUsername_Fail() {
 		assertEquals("notTest", testUser.getUserByUsername("test").getUsername());
 	}
 	
 	@Test
-	@Order(11)
+	@Order(13)
 	public void deleteUser_Pass() {
 		assertEquals(true, testUser.deleteUser(newUser));
 	}
 	
 	@Test
-	@Order(11)
+	@Order(14)
 	public void deleteUser_Fail() {
 		assertEquals(false, testUser.deleteUser(newUser));
 	}
