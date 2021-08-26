@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.annotations.Secured;
 import com.revature.models.Trip;
 import com.revature.services.TripService;
 
@@ -28,17 +29,21 @@ public class TripController {
 		super();
 		this.ts = ts;
 	}
-	
+
+	@Secured(allowedRoles= {"ADMIN", "BASIC_USER"})
 	@GetMapping(value="/{id}")
 	public ResponseEntity<Trip> getTripById(@PathVariable("id") int id){
 		return new ResponseEntity<Trip>(ts.getTripById(id), HttpStatus.OK);
 	}
 	
+
+	@Secured(allowedRoles= {"ADMIN"})
 	@GetMapping(value="/all")
 	public ResponseEntity<List<Trip>> getTrips(){
 		return new ResponseEntity<>(ts.getAllTrips(), HttpStatus.OK);
 	}
 	
+	@Secured(allowedRoles= {"ADMIN", "BASIC_USER"})
 	@PostMapping
 	public ResponseEntity<String> createTrip(@Valid @RequestBody Trip newTrip){
 		if(ts.getTripById(newTrip.getT_id()) != null) {
@@ -48,6 +53,7 @@ public class TripController {
 		return new ResponseEntity<>("Trip with id: "+newTripNum +" has been created.", HttpStatus.CREATED);
 	}
 	
+	@Secured(allowedRoles= {"ADMIN"})
 	@DeleteMapping(value="/dlt/{delete}")
 	public ResponseEntity<String> deleteUser(@PathVariable("delete") int id){
 		if(ts.deleteTrip(id) == false) {
