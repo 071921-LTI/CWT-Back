@@ -23,18 +23,18 @@ public class Trip {
 	private int t_id;
 	
 	@Column(name="submitted_datetime", updatable=false, columnDefinition="timestamp default CURRENT_TIMESTAMP")
-	private LocalDateTime TimeSubmited;
+	private LocalDateTime submitted_datetime;
 	
-	@Column(nullable=false)
-	private String CurrLocation;
+	@Column(name ="curr_location", nullable=false )
+	private String curr_location;
 	
-	@Column(nullable=false)
-	private String Destination;
+	@Column(name="destination",nullable=false)
+	private String destination;
 	
-	@Column(nullable=false)
-	private int TimeElapsed;
+	@Column(name="time_elapsed")
+	private int time_elapsed;
 	
-	@Column(nullable=false)
-	private int userId;
+	@Column(name="user_id",nullable=false)
+	private int user_id;
 
 }

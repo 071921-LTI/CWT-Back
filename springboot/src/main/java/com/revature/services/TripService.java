@@ -4,14 +4,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.daos.TripRepository;
-import com.revature.daos.UserRepository;
 import com.revature.models.Trip;
-import com.revature.models.User;
-import com.revature.models.UserRole;
 
+@Service
 public class TripService {
 	private TripRepository tr;
 
@@ -23,7 +22,6 @@ public class TripService {
 	
 	@Transactional(readOnly=true)
 	public Trip getTripById(int id) {
-//		return ur.getById(id);
 		return tr.findById(id).get();
 	}
 	
@@ -39,14 +37,10 @@ public class TripService {
 	
 	@Transactional
 	public int addTrip(Trip t) {
-		t.setTimeSubmited(LocalDateTime.now());
-		t.setCurrLocation("New York");
-		t.setDestination("Harford");
-		t.setTimeElapsed(360);
+		t.setSubmitted_datetime(LocalDateTime.now());
 		tr.save(t);
 		return t.getT_id();
 	}
-	
 	
 	@Transactional
 	public boolean deleteTrip(int id) {
