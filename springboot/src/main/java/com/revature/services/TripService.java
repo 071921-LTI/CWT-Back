@@ -22,13 +22,7 @@ public class TripService {
 	
 	@Transactional(readOnly=true)
 	public Trip getTripById(int id) {
-//		return ur.getById(id);
 		return tr.findById(id).get();
-	}
-	
-	@Transactional(readOnly=true)
-	public Trip getTripByName(String tripName) {
-		return null; // TODO need to see how to update methods when you add a method to the trip
 	}
 	
 	@Transactional
@@ -43,10 +37,7 @@ public class TripService {
 	
 	@Transactional
 	public int addTrip(Trip t) {
-//		t.setTimeSubmited(LocalDateTime.now());
-//		t.setCurrLocation("New York");
-//		t.setDestination("Harford");
-//		t.setTimeElapsed(360);
+		t.setSubmitted_datetime(LocalDateTime.now());
 		tr.save(t);
 		return t.getT_id();
 	}

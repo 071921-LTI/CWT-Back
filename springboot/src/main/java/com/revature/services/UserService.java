@@ -24,8 +24,7 @@ public class UserService {
 	
 	@Transactional(readOnly=true)
 	public User getUserById(int id) {
-//		return ur.getById(id);
-		return ur.findById(id).get();
+		return ur.getById(id);
 	}
 	
 	@Transactional

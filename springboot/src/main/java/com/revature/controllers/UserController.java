@@ -1,5 +1,8 @@
 package com.revature.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +22,6 @@ import com.revature.services.UserService;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-
 	private UserService us;
 	
 	@Autowired
@@ -33,15 +35,14 @@ public class UserController {
 		return new ResponseEntity<User>(us.getUserById(id), HttpStatus.OK);
 	}
 	
-	@GetMapping(value="/usrname/{usrnm}")
+	@GetMapping(value="/un/{usrnm}")
 	public ResponseEntity<User> getByUsrnm(@PathVariable("usrnm") String usrnm){
 		return new ResponseEntity<User>(us.getUserByUsername(usrnm), HttpStatus.OK);
 	}
 	
 	@GetMapping(value="/all")
-	public ResponseEntity<User> getAllUsers(){
-		//return new ResponseEntity<User>(us.getUsers(), HttpStatus.OK);
-		return null;
+	public ResponseEntity<List<User>> getAllUsers(){
+		return new ResponseEntity<>(us.getUsers(),HttpStatus.ALREADY_REPORTED);
 	}
 	
 	@PostMapping
@@ -54,10 +55,11 @@ public class UserController {
 		return new ResponseEntity<>("User "+ user.getUsername() + " with id of " + newUserId + " has been created.", HttpStatus.CREATED);
 	}
 	
-	
-	@DeleteMapping(value="/delete/{delete}")
-	public ResponseEntity<String> deleteUser(@PathVariable("id") int id){
-		return new ResponseEntity<>(HttpStatus.OK);
+	@DeleteMapping(value="/dlt/{delete}")
+	public ResponseEntity<String> deleteUser(@PathVariable("delete") int id){
+		if(us.deleteUser(id) == false) {
+			return new ResponseEntity<>("Id: "+id+" does not exist", HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<>("User with id "+id+" was deleted",HttpStatus.OK);
 	}
-	
 }
