@@ -29,13 +29,14 @@ public class TripController {
 		super();
 		this.ts = ts;
 	}
-	
+
 	@Secured(allowedRoles= {"ADMIN", "BASIC_USER"})
 	@GetMapping(value="/{id}")
 	public ResponseEntity<Trip> getTripById(@PathVariable("id") int id){
 		return new ResponseEntity<Trip>(ts.getTripById(id), HttpStatus.OK);
 	}
 	
+
 	@Secured(allowedRoles= {"ADMIN"})
 	@GetMapping(value="/all")
 	public ResponseEntity<List<Trip>> getTrips(){

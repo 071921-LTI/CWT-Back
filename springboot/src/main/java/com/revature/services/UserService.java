@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.daos.UserRepository;
@@ -25,8 +24,7 @@ public class UserService {
 	
 	@Transactional(readOnly=true)
 	public User getUserById(int id) {
-//		return ur.getById(id);
-		return ur.findById(id).get();
+		return ur.getById(id);
 	}
 	
 	@Transactional
