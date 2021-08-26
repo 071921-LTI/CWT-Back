@@ -26,12 +26,15 @@ public class Trip {
 	private LocalDateTime TimeSubmited;
 	
 	@Column(nullable=false)
+	private String TripName;
+	
+	@Column(nullable=false)
 	private String CurrLocation;
 	
 	@Column(nullable=false)
 	private String Destination;
 	
-	@Column(nullable=false)
+	@Column()
 	private int TimeElapsed;
 	
 	@Column(nullable=false)

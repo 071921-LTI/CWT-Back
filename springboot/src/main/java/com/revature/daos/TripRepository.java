@@ -9,10 +9,6 @@ import com.revature.models.Trip;
 
 public interface TripRepository extends JpaRepository<Trip, Integer> {
 	
-
 	@Query("select t from Trip t where t.userId =?1")
 	List<Trip> findAllByUserId(int id);
-	
-	
-	
 }
