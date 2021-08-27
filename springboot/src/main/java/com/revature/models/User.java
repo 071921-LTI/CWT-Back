@@ -26,7 +26,10 @@ import lombok.Data;
 @Table(name="users")
 public class User {
 
-	
+	//DO NOT REMOVE, will give Error Code 500s if it is!
+	public User() { 
+		super();
+	}
 
 	public User(String username, String password) {
 		super();
