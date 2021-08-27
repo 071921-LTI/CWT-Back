@@ -17,6 +17,7 @@ import com.revature.dtos.Credentials;
 import com.revature.services.AuthService;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/auth")
 public class AuthController {
 
