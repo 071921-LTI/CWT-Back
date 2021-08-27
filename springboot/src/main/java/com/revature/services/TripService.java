@@ -20,20 +20,22 @@ public class TripService {
 		this.tr = tr;
 	}
 	
-	@Transactional(readOnly=true)
 	public Trip getTripById(int id) {
 		return tr.findById(id).get();
 	}
 	
-	@Transactional
 	public List<Trip> getTripByUser(int id) {
 		return tr.findAllByUserId(id);
 	}
 	
-	@Transactional
 	public List<Trip> getAllTrips() {
 		return tr.findAll();
 	}
+	
+	public Trip getTripByLocationAndDestination(String location,String destination) {
+		return tr.findByLocationDestination(location,destination);
+	}
+	
 	
 	@Transactional
 	public int addTrip(Trip t) {
@@ -41,6 +43,8 @@ public class TripService {
 		tr.save(t);
 		return t.getT_id();
 	}
+	
+	
 	
 	@Transactional
 	public boolean deleteTrip(int id) {

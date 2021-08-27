@@ -52,4 +52,10 @@ public class Trip {
 	@Column(name="user_id",nullable=false)
 	private int user_id;
 
+	public Trip() {
+		super();
+	}
+	
+	
+
 }

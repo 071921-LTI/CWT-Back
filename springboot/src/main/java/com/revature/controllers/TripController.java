@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.revature.models.Trip;
 import com.revature.services.TripService;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/trip")
 public class TripController {
 	private TripService ts;
@@ -46,7 +48,7 @@ public class TripController {
 	@Secured(allowedRoles= {"ADMIN", "BASIC_USER"})
 	@PostMapping
 	public ResponseEntity<String> createTrip(@Valid @RequestBody Trip newTrip){
-		if(ts.getTripById(newTrip.getT_id()) != null) {
+		if(ts.getTripByLocationAndDestination(newTrip.getCurr_location(), newTrip.getDestination()) != null) {
 			return new ResponseEntity<>("Trip exist.", HttpStatus.BAD_REQUEST);
 		}
 		int newTripNum = ts.addTrip(newTrip);
@@ -61,4 +63,11 @@ public class TripController {
 		}
 		return new ResponseEntity<>("User with id "+id+" was deleted",HttpStatus.OK);
 	}
+	
+	@Secured(allowedRoles= {"ADMIN","BASIC_USER"})
+	@GetMapping(value="/user/{id}")
+	public ResponseEntity<List<Trip>> getTripsByUser(@PathVariable("id") int id){
+		return new ResponseEntity<>(ts.getTripByUser(id), HttpStatus.OK);
+	}
+	
 }
