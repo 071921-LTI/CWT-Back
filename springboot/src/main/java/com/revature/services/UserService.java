@@ -45,6 +45,11 @@ public class UserService {
 		return u.getId();
 	}
 	
+	@Transactional
+	public int getCountOfUsers() {
+		return ur.getUserCount();
+	}
+	
 	
 	@Transactional
 	public boolean deleteUser(int id) {

@@ -18,6 +18,9 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	@Query("Select u from User u Where u.username = ?1")
 	User findUserByUsername(String username);
 	
+	@Query("Select COUNT(*) from User u")
+	int getUserCount();
+	
 	
 //	@Query("Select u from User u")
 //	List<User> getUsers();
