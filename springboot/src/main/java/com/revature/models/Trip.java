@@ -18,6 +18,21 @@ import lombok.Data;
 @Table(name="trips")
 public class Trip {
 	
+
+	public Trip() {
+		super();
+	}
+
+	public Trip(int t_id, String curr_location, String destination, int time_elapsed,
+			int user_id) {
+		super();
+		this.t_id = t_id;
+		this.curr_location = curr_location;
+		this.destination = destination;
+		this.time_elapsed = time_elapsed;
+		this.user_id = user_id;
+	}
+
 	@Id @Column
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int t_id;
