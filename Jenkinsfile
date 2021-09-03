@@ -28,7 +28,7 @@ pipeline {
       }
       stage('package') {
          steps {
-            sh 'cd CWT'
+            sh 'cd springboot'
             sh 'mvn package -Dmaven.test.skip=true'
          }
       }
