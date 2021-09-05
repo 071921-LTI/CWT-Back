@@ -32,20 +32,20 @@ public class TripController {
 		this.ts = ts;
 	}
 
-	@Secured(allowedRoles= {"ADMIN", "BASIC_USER"})
+//	@Secured(allowedRoles= {"ADMIN", "BASIC_USER"})
 	@GetMapping(value="/{id}")
 	public ResponseEntity<Trip> getTripById(@PathVariable("id") int id){
 		return new ResponseEntity<Trip>(ts.getTripById(id), HttpStatus.OK);
 	}
 	
 
-	@Secured(allowedRoles= {"ADMIN"})
+//	@Secured(allowedRoles= {"ADMIN"})
 	@GetMapping(value="/all")
 	public ResponseEntity<List<Trip>> getTrips(){
 		return new ResponseEntity<>(ts.getAllTrips(), HttpStatus.OK);
 	}
 	
-	@Secured(allowedRoles= {"ADMIN", "BASIC_USER"})
+//	@Secured(allowedRoles= {"ADMIN", "BASIC_USER"})
 	@PostMapping
 	public ResponseEntity<String> createTrip(@Valid @RequestBody Trip newTrip){
 		if(ts.getTripByLocationAndDestination(newTrip.getCurr_location(), newTrip.getDestination()) != null) {
@@ -55,7 +55,7 @@ public class TripController {
 		return new ResponseEntity<>("Trip with id: "+newTripNum +" has been created.", HttpStatus.CREATED);
 	}
 	
-	@Secured(allowedRoles= {"ADMIN"})
+//	@Secured(allowedRoles= {"ADMIN"})
 	@DeleteMapping(value="/dlt/{delete}")
 	public ResponseEntity<String> deleteUser(@PathVariable("delete") int id){
 		if(ts.deleteTrip(id) == false) {
@@ -64,7 +64,7 @@ public class TripController {
 		return new ResponseEntity<>("User with id "+id+" was deleted",HttpStatus.OK);
 	}
 	
-	@Secured(allowedRoles= {"ADMIN","BASIC_USER"})
+//	@Secured(allowedRoles= {"ADMIN","BASIC_USER"})
 	@GetMapping(value="/user/{id}")
 	public ResponseEntity<List<Trip>> getTripsByUser(@PathVariable("id") int id){
 		return new ResponseEntity<>(ts.getTripByUser(id), HttpStatus.OK);

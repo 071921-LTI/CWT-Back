@@ -32,18 +32,18 @@ public class UserController {
 		this.us = us;
 	}
 	
-	@Secured(allowedRoles= {"ADMIN", "BASIC_USER"})
+//	@Secured(allowedRoles= {"ADMIN", "BASIC_USER"})
 	@GetMapping(value="/{id}")
 	public ResponseEntity<User> getById(@PathVariable("id") int id){
 		return new ResponseEntity<User>(us.getUserById(id), HttpStatus.OK);
 	}
 	
-	@Secured(allowedRoles= {"ADMIN", "BASIC_USER"})
+//	@Secured(allowedRoles= {"ADMIN", "BASIC_USER"})
 	@GetMapping(value="/un/{usrnm}")
 	public ResponseEntity<User> getByUsrnm(@PathVariable("usrnm") String usrnm){
 		return new ResponseEntity<User>(us.getUserByUsername(usrnm), HttpStatus.OK);
 	}
-	@Secured(allowedRoles= {"ADMIN"})
+//	@Secured(allowedRoles= {"ADMIN"})
 	@GetMapping(value="/all")
 	public ResponseEntity<List<User>> getAllUsers(){
 		return new ResponseEntity<>(us.getUsers(),HttpStatus.ALREADY_REPORTED);
@@ -63,7 +63,7 @@ public class UserController {
 		int newUserId = us.addUser(user);
 		return new ResponseEntity<>("User "+ user.getUsername() + " with id of " + newUserId + " has been created.", HttpStatus.CREATED);
 	}
-	@Secured(allowedRoles= {"ADMIN"})
+//	@Secured(allowedRoles= {"ADMIN"})
 	@DeleteMapping(value="/dlt/{delete}")
 	public ResponseEntity<String> deleteUser(@PathVariable("delete") int id){
 		if(us.deleteUser(id) == false) {
