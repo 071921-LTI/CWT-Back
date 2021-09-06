@@ -46,12 +46,6 @@ public class UserService {
 	}
 	
 	@Transactional
-	public int getCountOfUsers() {
-		return ur.getUserCount();
-	}
-	
-	
-	@Transactional
 	public boolean deleteUser(int id) {
 		if (getUserById(id) != null) {
 			ur.deleteById(id);

@@ -57,7 +57,7 @@ public class TripController {
 	
 //	@Secured(allowedRoles= {"ADMIN"})
 	@DeleteMapping(value="/dlt/{delete}")
-	public ResponseEntity<String> deleteUser(@PathVariable("delete") int id){
+	public ResponseEntity<String> deleteTrip(@PathVariable("delete") int id){
 		if(ts.deleteTrip(id) == false) {
 			return new ResponseEntity<>("Trip with "+id+" does not exist", HttpStatus.BAD_REQUEST);
 		}

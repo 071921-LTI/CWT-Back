@@ -49,11 +49,6 @@ public class UserController {
 		return new ResponseEntity<>(us.getUsers(),HttpStatus.ALREADY_REPORTED);
 	}
 
-	@GetMapping(value="/count")
-	public ResponseEntity<String> getCountOfUsers(){
-		return new ResponseEntity<>(Integer.toString(us.getCountOfUsers()),HttpStatus.OK);
-	}
-
 	@PostMapping
 	public ResponseEntity<String> createUser(@Valid @RequestBody User user){
 		if(us.getUserByUsername(user.getUsername())!= null) {
